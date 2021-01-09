@@ -1,4 +1,5 @@
 public class Capteur {
+
     private int id;
     private int valeur;
     private int seuilMin;

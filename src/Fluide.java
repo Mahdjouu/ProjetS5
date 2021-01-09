@@ -1,4 +1,5 @@
 public class Fluide {
+
     private String unite;
     private int seuilDefautMin;
     private int seuilDefautMax;
