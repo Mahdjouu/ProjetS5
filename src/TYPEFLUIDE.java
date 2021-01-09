@@ -1,0 +1,6 @@
+public enum TYPEFLUIDE {
+    ELECTRICITE,
+    AIR_COMPRIME,
+    TEMPERATURE,
+    EAU
+}
