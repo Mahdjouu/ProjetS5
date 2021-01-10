@@ -1,0 +1,93 @@
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Connexion {
+
+    private boolean connected;
+    private String address;
+    private String username;
+    private String password;
+    private Connection connection;
+    private Statement statement;
+
+    public Connexion(String address, String username, String password) {
+        this.connected = false;
+        this.address = address;
+        this.username = username;
+        this.password = password;
+        this.connection = null;
+    }
+
+    public boolean connect() {
+
+        System.out.println("-------- Oracle JDBC Connection Testing ------");
+
+        try {
+
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+
+        } catch (ClassNotFoundException e) {
+
+            this.connected = false;
+            System.err.println("Could not find the Oracle JDBC Driver");
+            e.printStackTrace();
+            return false;
+
+        }
+
+        System.out.println("Oracle JDBC Driver Registered!");
+
+        try {
+
+            connection = DriverManager.getConnection(address, username, password);
+            statement = connection.createStatement();
+
+        } catch (SQLException e) {
+
+            this.connected = false;
+            System.err.println("Connection Failed!");
+            e.printStackTrace();
+            return false;
+
+        }
+
+        if (connection != null) {
+
+            this.connected = true;
+            System.out.println("Connection successfully established!");
+            return true;
+
+        } else {
+
+            this.connected = false;
+            System.err.println("Connection Failed!");
+            return false;
+
+        }
+    }
+
+    public ResultSet executeQuery(String query) {
+
+        try {
+            return statement.executeQuery(query);
+        } catch (SQLException e) {
+            System.err.println("Could not execute query : " + query);
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public int executeUpdate(String query) {
+
+        try {
+            return statement.executeUpdate(query);
+        } catch (SQLException e) {
+            System.err.println("Could not execute update : " + query);
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
+}
