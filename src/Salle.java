@@ -1,3 +1,6 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Salle {
 
     private int id;
@@ -11,6 +14,32 @@ public class Salle {
         this.batiment = batiment;
         this.etage = etage;
     }
+
+
+    /*
+    ____________________________
+           REQUETES SQL
+    ____________________________
+    */
+
+
+    public static Salle create(ResultSet resultSet) {
+        try {
+            int id = resultSet.getInt("id");
+            String nom = resultSet.getString("nom");
+            String batiment = resultSet.getString("batiment");
+            int etage = resultSet.getInt("etage");
+
+            Salle salle;
+            salle = new Salle(id, nom, batiment, etage);
+            return salle;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+
 
     /*
     ____________________________

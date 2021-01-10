@@ -1,16 +1,45 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Fluide {
 
     private String unite;
-    private int seuilDefautMin;
-    private int seuilDefautMax;
+    private float seuilDefautMin;
+    private float seuilDefautMax;
     private TYPEFLUIDE type_fluide;
 
-    public Fluide(String unite, int seuilDefautMin, int seuilDefautMax, TYPEFLUIDE type_fluide) {
+    public Fluide(String unite, float seuilDefautMin, float seuilDefautMax, TYPEFLUIDE type_fluide) {
         this.unite = unite;
         this.seuilDefautMin = seuilDefautMin;
         this.seuilDefautMax = seuilDefautMax;
         this.type_fluide = type_fluide;
     }
+
+    /*
+    ____________________________
+           REQUETES SQL
+    ____________________________
+    */
+
+
+    public static Fluide create(ResultSet resultSet) {
+        try {
+
+            String unite = resultSet.getString("unite");
+            float seuilDefautMin = resultSet.getFloat("seuilDefautMin");
+            float seuilDefautMax = resultSet.getFloat("seuilDefautMax");
+            TYPEFLUIDE type_fluide = resultSet.getObject("etage", TYPEFLUIDE.class);
+
+            Fluide fluide;
+            fluide = new Fluide(unite, seuilDefautMin, seuilDefautMax, type_fluide);
+            return fluide;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+
 
     /*
     ____________________________
@@ -26,7 +55,7 @@ public class Fluide {
         this.unite = unite;
     }
 
-    public int getSeuilDefautMin() {
+    public float getSeuilDefautMin() {
         return seuilDefautMin;
     }
 
@@ -34,7 +63,7 @@ public class Fluide {
         this.seuilDefautMin = seuilDefautMin;
     }
 
-    public int getSeuilDefautMax() {
+    public float getSeuilDefautMax() {
         return seuilDefautMax;
     }
 
