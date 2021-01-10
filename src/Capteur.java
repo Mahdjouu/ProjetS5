@@ -14,6 +14,13 @@ public class Capteur {
         this.connecte = connecte;
     }
 
+
+    /*
+    ____________________________
+        GETTERS & SETTERS
+    ____________________________
+    */
+
     public int getId() {
         return id;
     }

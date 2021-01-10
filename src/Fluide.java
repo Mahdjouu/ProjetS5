@@ -12,6 +12,12 @@ public class Fluide {
         this.type_fluide = type_fluide;
     }
 
+    /*
+    ____________________________
+        GETTERS & SETTERS
+    ____________________________
+    */
+
     public String getUnite() {
         return unite;
     }

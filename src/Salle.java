@@ -12,6 +12,12 @@ public class Salle {
         this.etage = etage;
     }
 
+    /*
+    ____________________________
+        GETTERS & SETTERS
+    ____________________________
+    */
+
     public int getId() {
         return id;
     }

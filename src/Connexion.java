@@ -17,6 +17,12 @@ public class Connexion {
         this.connection = null;
     }
 
+    /*
+    ____________________________
+        CONNECTION & ERREURS
+    ____________________________
+    */
+
     public boolean connect() {
 
         System.out.println("-------- Oracle JDBC Connection Testing ------");
@@ -86,6 +92,39 @@ public class Connexion {
             return 0;
         }
     }
+
+    /*
+    ____________________________
+        GETTERS & SETTERS
+    ____________________________
+    */
+
+    public boolean isConnected() {
+        return connected;
+    }
+
+    public void setConnected(boolean connected) {
+        this.connected = connected;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    /*
+    ____________________________
+        REQUESTS SQL
+    ____________________________
+    */
+
 
 
 }
