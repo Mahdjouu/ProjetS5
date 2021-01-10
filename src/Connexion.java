@@ -1,13 +1,11 @@
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Connexion {
 
     private boolean connected;
-    private String address;
-    private String username;
-    private String password;
+    private final String address;
+    private final String username;
+    private final String password;
     private Connection connection;
     private Statement statement;
 
