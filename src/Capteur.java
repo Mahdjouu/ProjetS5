@@ -8,16 +8,16 @@ public class Capteur {
     private float seuilMin;
     private float seuilMax;
     private boolean connecte;
-    private Salle salle;
+    private Lieu lieu;
     private Fluide fluide;
 
-    public Capteur(int id, float valeur, float seuilMin, float seuilMax, boolean connecte, Salle salle, Fluide fluide) {
+    public Capteur(int id, float valeur, float seuilMin, float seuilMax, boolean connecte, Lieu lieu, Fluide fluide) {
         this.id = id;
         this.valeur = valeur;
         this.seuilMin = seuilMin;
         this.seuilMax = seuilMax;
         this.connecte = connecte;
-        this.salle = salle;
+        this.lieu = lieu;
         this.fluide = fluide;
     }
 
@@ -42,8 +42,8 @@ public class Capteur {
             String batiment = resultSet.getString("batiment");
             int etage = resultSet.getInt("etage");
 
-            Salle salle;
-            salle = new Salle(idS, nom, batiment, etage);
+            Lieu lieu;
+            lieu = new Lieu(idS, nom, batiment, etage);
 
 
             String unite = resultSet.getString("unite");
@@ -56,7 +56,7 @@ public class Capteur {
 
 
             Capteur capteur;
-            capteur = new Capteur(id, valeur, seuilMin, seuilMax, connecte, salle, fluide);
+            capteur = new Capteur(id, valeur, seuilMin, seuilMax, connecte, lieu, fluide);
             return capteur;
 
         } catch (SQLException throwables) {
@@ -112,12 +112,12 @@ public class Capteur {
         this.connecte = connecte;
     }
 
-    public Salle getSalle() {
-        return salle;
+    public Lieu getLieu() {
+        return lieu;
     }
 
-    public void setSalle(Salle salle) {
-        this.salle = salle;
+    public void setLieu(Lieu lieu) {
+        this.lieu = lieu;
     }
 
     public Fluide getFluide() {

@@ -1,14 +1,14 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Salle {
+public class Lieu {
 
     private int id;
     private String nom;
     private String batiment;
     private int etage;
 
-    public Salle(int id, String nom, String batiment, int etage) {
+    public Lieu(int id, String nom, String batiment, int etage) {
         this.id = id;
         this.nom = nom;
         this.batiment = batiment;
@@ -23,15 +23,15 @@ public class Salle {
     */
 
 
-    public static Salle create(ResultSet resultSet) {
+    public static Lieu create(ResultSet resultSet) {
         try {
             int id = resultSet.getInt("id");
             String nom = resultSet.getString("nom");
             String batiment = resultSet.getString("batiment");
             int etage = resultSet.getInt("etage");
 
-            Salle salle;
-            salle = new Salle(id, nom, batiment, etage);
+            Lieu salle;
+            salle = new Lieu(id, nom, batiment, etage);
             return salle;
 
         } catch (SQLException throwables) {
