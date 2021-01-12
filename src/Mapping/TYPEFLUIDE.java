@@ -1,3 +1,5 @@
+package Mapping;
+
 public enum TYPEFLUIDE {
 
     AIR_COMPRIME,
