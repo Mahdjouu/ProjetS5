@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Interface extends JFrame {
+public class Interface {
+
+    private JDialog dialogPort;
 
     private JButton btnAnnulerPort;
     private JButton btnModifierSeuils;
@@ -17,46 +19,12 @@ public class Interface extends JFrame {
     private JCheckBox checkTemperature1;
     private JCheckBox checkTemperature2;
 
-    private JDialog dialogPort;
-
-    private JLabel labelA;
-    private JLabel labelConnexion;
-    private JLabel labelDe;
-    private JLabel labelPort;
-
     private JList<String> listeBatiments;
     private JList<String> listeCapteurs2;
 
     private JTable listeCapteurs1;
     private JTable tableauInfosCapteur;
     private JTable tableauSeuilsDefaut;
-
-    private JTabbedPane onglets;
-
-    private JPanel onglet1;
-    private JPanel onglet2;
-    private JPanel onglet3;
-    private JPanel panelCourbe1;
-    private JPanel panelCourbe2;
-    private JPanel panelCourbe3;
-    private JPanel panelCourbes;
-    private JPanel panelDates;
-    private JPanel panelDates2;
-    private JPanel panelFiltres1;
-    private JPanel panelFiltres2;
-    private JPanel panelFluides1;
-    private JPanel panelFluides2;
-    private JPanel panelTableaux;
-    private JPanel panelInfosCapteur;
-    private JPanel panelSeuilsDefaut;
-    private JPanel panelPort;
-
-    private JScrollPane scrollPanelBatiments;
-    private JScrollPane scrollPanelInfosCapteur;
-    private JScrollPane scrollPanelListeCapteurs1;
-    private JScrollPane scrollPanelListeCapteurs2;
-    private JScrollPane scrollPanelSeuilsDefaut;
-    private JScrollPane scrollPanelTree;
 
     private JTextField textDateFin;
     private JTextField textDateDebut;
@@ -65,24 +33,25 @@ public class Interface extends JFrame {
     private JTree treeCapteurs;
 
     public Interface() {
-        initComponents();
+        JFrame frame = new JFrame();
+        initialisation(frame);
     }
 
-    private void initComponents() {
+    private void initialisation(JFrame frame) {
 
         /* Boite de dialogue pour le port */
 
         dialogPort = new JDialog();
-        panelPort = new JPanel();
-        labelConnexion = new JLabel();
-        labelPort = new JLabel();
+        JPanel panelPort = new JPanel(new java.awt.GridLayout(5, 1));
+        JLabel labelConnexion = new JLabel();
+        JLabel labelPort = new JLabel();
         textPort = new JTextField();
         btnAnnulerPort = new JButton();
         btnValiderPort = new JButton();
 
         dialogPort.setResizable(false);
+        dialogPort.setMinimumSize(new Dimension(450, 200));
         dialogPort.setLocationRelativeTo(null);
-        panelPort.setLayout(new java.awt.GridLayout(5,1));
 
         labelConnexion.setFont(new java.awt.Font("Tahoma", 1, 11));
         labelConnexion.setHorizontalAlignment(SwingConstants.CENTER);
@@ -106,12 +75,12 @@ public class Interface extends JFrame {
 
         /* Fenêtre principale - Gestion des capteurs */
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Gestion des capteurs");
-        setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(800, 500));
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setTitle("Gestion des capteurs");
+        frame.setMinimumSize(new java.awt.Dimension(600, 400));
+        frame.setPreferredSize(new java.awt.Dimension(800, 500));
 
-        onglets = new JTabbedPane();
+        JTabbedPane onglets = new JTabbedPane();
 
         onglets.setBorder(BorderFactory.createTitledBorder(null, "NeoCampus", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14)));
         onglets.setPreferredSize(new Dimension(500, 450));
@@ -120,11 +89,11 @@ public class Interface extends JFrame {
 
         /* Onglet 1 - Visualisation en temps réel */
 
-        onglet1 = new JPanel(new java.awt.BorderLayout());
-        panelFiltres1 = new JPanel(new java.awt.BorderLayout());
-        panelFluides1 = new JPanel(new java.awt.GridLayout(4, 0));
-        scrollPanelListeCapteurs1 = new JScrollPane();
-        scrollPanelBatiments = new JScrollPane();
+        JPanel onglet1 = new JPanel(new java.awt.BorderLayout());
+        JPanel panelFiltres1 = new JPanel(new java.awt.BorderLayout());
+        JPanel panelFluides1 = new JPanel(new java.awt.GridLayout(4, 0));
+        JScrollPane scrollPanelListeCapteurs1 = new JScrollPane();
+        JScrollPane scrollPanelBatiments = new JScrollPane();
         listeCapteurs1 = new JTable();
         listeBatiments = new JList<>();
         checkEau1 = new JCheckBox();
@@ -164,7 +133,6 @@ public class Interface extends JFrame {
                 }
         ));
 
-
         checkEau1.setText("Eau");
         checkElectricite1.setText("Electricite");
         checkAirComprime1.setText("Air comprime");
@@ -188,16 +156,18 @@ public class Interface extends JFrame {
 
         /* Onglet 2 - Visualisation en temps différé */
 
-        onglet2 = new JPanel(new java.awt.BorderLayout());
-        panelFiltres2 = new JPanel(new java.awt.BorderLayout());
-        panelFluides2 = new JPanel(new java.awt.GridLayout(4, 0));
-        panelDates = new JPanel(new java.awt.BorderLayout());
-        panelDates2 = new JPanel(new java.awt.FlowLayout());
-        panelCourbes = new JPanel(new java.awt.GridLayout(3, 0));
-        panelCourbe1 = new JPanel();
-        panelCourbe2 = new JPanel();
-        panelCourbe3 = new JPanel();
-        scrollPanelListeCapteurs2 = new JScrollPane();
+        JPanel onglet2 = new JPanel(new java.awt.BorderLayout());
+        JPanel panelFiltres2 = new JPanel(new java.awt.BorderLayout());
+        JPanel panelFluides2 = new JPanel(new java.awt.GridLayout(4, 0));
+        JPanel panelDates = new JPanel(new java.awt.BorderLayout());
+        JPanel panelDates2 = new JPanel(new java.awt.FlowLayout());
+        JPanel panelCourbes = new JPanel(new java.awt.GridLayout(3, 0));
+        JPanel panelCourbe1 = new JPanel();
+        JPanel panelCourbe2 = new JPanel();
+        JPanel panelCourbe3 = new JPanel();
+        JScrollPane scrollPanelListeCapteurs2 = new JScrollPane();
+        JLabel labelDe = new JLabel();
+        JLabel labelA = new JLabel();
         listeCapteurs2 = new JList<>();
         checkEau2 = new JCheckBox();
         checkElectricite2 = new JCheckBox();
@@ -205,14 +175,14 @@ public class Interface extends JFrame {
         checkTemperature2 = new JCheckBox();
         textDateDebut = new JTextField();
         textDateFin = new JTextField();
-        labelDe = new JLabel();
-        labelA = new JLabel();
         btnValiderDates = new JButton();
 
         panelFiltres2.setBorder(BorderFactory.createTitledBorder("Filtres"));
         listeCapteurs2.setBorder(BorderFactory.createTitledBorder("Capteurs"));
 
-        listeCapteurs2.setModel(new AbstractListModel<String>() {
+        // REQUETE POUR GET TOUS LES NOMS DE CAPTEURS
+
+        listeCapteurs2.setModel(new AbstractListModel<>() {
             String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
 
             public int getSize() {
@@ -266,13 +236,14 @@ public class Interface extends JFrame {
 
         /* Onglet 3 - Gestion des capteurs */
 
-        onglet3 = new JPanel(new java.awt.BorderLayout());
-        panelTableaux = new JPanel(new java.awt.BorderLayout());
-        panelInfosCapteur = new JPanel(new java.awt.BorderLayout());
-        panelSeuilsDefaut = new JPanel(new java.awt.BorderLayout());
-        scrollPanelInfosCapteur = new JScrollPane();
-        scrollPanelSeuilsDefaut = new JScrollPane();
-        scrollPanelTree = new JScrollPane();
+        JPanel onglet3 = new JPanel(new java.awt.BorderLayout());
+        JPanel panelTableaux = new JPanel(new java.awt.BorderLayout());
+        JPanel panelInfosCapteur = new JPanel(new java.awt.BorderLayout());
+        JPanel panelSeuilsDefaut = new JPanel(new java.awt.BorderLayout());
+        JScrollPane scrollPanelInfosCapteur = new JScrollPane();
+        JScrollPane scrollPanelSeuilsDefaut = new JScrollPane();
+        JScrollPane scrollPanelTree = new JScrollPane();
+
         tableauInfosCapteur = new JTable();
         tableauSeuilsDefaut = new JTable();
         btnModifierSeuils = new JButton();
@@ -285,19 +256,15 @@ public class Interface extends JFrame {
 
         tableauInfosCapteur.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
-                        {"Batiment", ""},
+                        {"Batiment", null},
                         {"Etage", null},
                         {"Type de fluide", null},
                         {"Seuil minimum", null},
                         {"Seuil maximum", null}
                 },
-                new String[]{
-                        "Informations", "Valeurs"
-                }
+                new String[]{"Informations", "Valeurs"}
         ) {
-            boolean[] canEdit = new boolean[]{
-                    false, false
-            };
+            boolean[] canEdit = new boolean[]{false, false};
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
@@ -311,16 +278,12 @@ public class Interface extends JFrame {
                         {"TEMPERATURE", 17, 22, "°C"},
                         {"AIR COMPRIME", 0, 6, "m3/h"}
                 },
-                new String[]{
-                        "Fluide", "Seuil min", "Seuil max", "Unite"
-                }
+                new String[]{"Fluide", "Seuil min", "Seuil max", "Unite"}
         ) {
             Class[] types = new Class[]{
                     java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean[]{
-                    false, false, false, false
-            };
+            boolean[] canEdit = new boolean[]{false, false, false, false};
 
             public Class getColumnClass(int columnIndex) {
                 return types[columnIndex];
@@ -349,11 +312,11 @@ public class Interface extends JFrame {
 
         onglets.addTab("Gestion des capteurs", onglet3);
 
-        this.add(onglets);
-        this.setLocationRelativeTo(null);
+        frame.add(onglets);
+        frame.setLocationRelativeTo(null);
 
-        this.pack();
-        this.setVisible(true);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     public static void main(String args[]) {
