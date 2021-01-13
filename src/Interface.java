@@ -4,11 +4,14 @@ import java.awt.*;
 public class Interface {
 
     private JDialog dialogPort;
+    private JDialog dialogSeuils;
 
-    private JButton btnAnnulerPort;
-    private JButton btnModifierSeuils;
-    private JButton btnValiderDates;
     private JButton btnValiderPort;
+    private JButton btnAnnulerPort;
+    private JButton btnValiderDates;
+    private JButton btnModifierSeuils;
+    private JButton btnValiderSeuils;
+    private JButton btnAnnulerSeuils;
 
     private JCheckBox checkAirComprime1;
     private JCheckBox checkAirComprime2;
@@ -29,39 +32,51 @@ public class Interface {
     private JTextField textDateFin;
     private JTextField textDateDebut;
     private JTextField textPort;
+    private JTextField textSeuilMin;
+    private JTextField textSeuilMax;
 
     private JTree treeCapteurs;
 
     public Interface() {
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Gestion des capteurs");
         initialisation(frame);
     }
 
     private void initialisation(JFrame frame) {
 
+
+
+        /* Fenêtre principale - Gestion des capteurs */
+
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setMinimumSize(new Dimension(600, 400));
+        frame.setPreferredSize(new Dimension(800, 500));
+
+        JTabbedPane onglets = new JTabbedPane();
+
+        onglets.setBorder(BorderFactory.createTitledBorder(null, "NeoCampus", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new Font("Tahoma", 1, 14)));
+        onglets.setPreferredSize(new Dimension(500, 450));
+
+
+
         /* Boite de dialogue pour le port */
 
         dialogPort = new JDialog();
-        JPanel panelPort = new JPanel(new java.awt.GridLayout(5, 1));
-        JLabel labelConnexion = new JLabel();
-        JLabel labelPort = new JLabel();
-        textPort = new JTextField();
-        btnAnnulerPort = new JButton();
-        btnValiderPort = new JButton();
+        JPanel panelPort = new JPanel(new GridLayout(5, 1));
+        JLabel labelConnexion = new JLabel("Connexion à l'interface de visualisation NeoCampus");
+        JLabel labelPort = new JLabel("Veuillez renseigner le port sur lequel vous souhaitez vous connecter :");
+        textPort = new JTextField("8080");
+        btnAnnulerPort = new JButton("Annuler");
+        btnValiderPort = new JButton("Valider");
 
         dialogPort.setResizable(false);
         dialogPort.setMinimumSize(new Dimension(450, 200));
         dialogPort.setLocationRelativeTo(null);
 
-        labelConnexion.setFont(new java.awt.Font("Tahoma", 1, 11));
+        labelConnexion.setFont(new Font("Tahoma", 1, 11));
         labelConnexion.setHorizontalAlignment(SwingConstants.CENTER);
-        labelConnexion.setText("Connexion à l'interface de visualisation NeoCampus");
-        labelPort.setText("Veuillez renseigner le port sur lequel vous souhaitez vous connecter :");
-        textPort.setColumns(4);
+        labelPort.setHorizontalAlignment(SwingConstants.CENTER);
         textPort.setHorizontalAlignment(JTextField.CENTER);
-        textPort.setText("8080");
-        btnAnnulerPort.setText("Annuler");
-        btnValiderPort.setText("Valider");
 
         panelPort.add(labelConnexion);
         panelPort.add(labelPort);
@@ -73,33 +88,50 @@ public class Interface {
 
 
 
-        /* Fenêtre principale - Gestion des capteurs */
+        /* Boite de dialogue pour la modification des seuils */
 
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setTitle("Gestion des capteurs");
-        frame.setMinimumSize(new java.awt.Dimension(600, 400));
-        frame.setPreferredSize(new java.awt.Dimension(800, 500));
+        dialogSeuils = new JDialog();
+        JPanel panelDialogSeuils = new JPanel(new GridLayout(3, 2));
+        JLabel labelSeuilMin = new JLabel("Seuil minimum : ");
+        JLabel labelSeuilMax = new JLabel("Seuil maximum : ");
+        textSeuilMin = new JTextField();
+        textSeuilMax = new JTextField();
+        btnAnnulerSeuils = new JButton("Annuler");
+        btnValiderSeuils = new JButton("Valider");
 
-        JTabbedPane onglets = new JTabbedPane();
+        dialogSeuils.setMinimumSize(new Dimension(250, 130));
+        dialogSeuils.setLocationRelativeTo(null);
+        dialogSeuils.setTitle("Modification des seuils");
 
-        onglets.setBorder(BorderFactory.createTitledBorder(null, "NeoCampus", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14)));
-        onglets.setPreferredSize(new Dimension(500, 450));
+        labelSeuilMin.setHorizontalAlignment(SwingConstants.TRAILING);
+        labelSeuilMax.setHorizontalAlignment(SwingConstants.TRAILING);
+        textSeuilMin.setHorizontalAlignment(SwingConstants.CENTER);
+        textSeuilMax.setHorizontalAlignment(SwingConstants.CENTER);
+
+        panelDialogSeuils.add(labelSeuilMin);
+        panelDialogSeuils.add(textSeuilMin);
+        panelDialogSeuils.add(labelSeuilMax);
+        panelDialogSeuils.add(textSeuilMax);
+        panelDialogSeuils.add(btnAnnulerSeuils);
+        panelDialogSeuils.add(btnValiderSeuils);
+        dialogSeuils.add(panelDialogSeuils);
 
 
+        dialogPort.setVisible(true);
 
         /* Onglet 1 - Visualisation en temps réel */
 
-        JPanel onglet1 = new JPanel(new java.awt.BorderLayout());
-        JPanel panelFiltres1 = new JPanel(new java.awt.BorderLayout());
-        JPanel panelFluides1 = new JPanel(new java.awt.GridLayout(4, 0));
+        JPanel onglet1 = new JPanel(new BorderLayout());
+        JPanel panelFiltres1 = new JPanel(new BorderLayout());
+        JPanel panelFluides1 = new JPanel(new GridLayout(4, 0));
         JScrollPane scrollPanelListeCapteurs1 = new JScrollPane();
         JScrollPane scrollPanelBatiments = new JScrollPane();
         listeCapteurs1 = new JTable();
         listeBatiments = new JList<>();
-        checkEau1 = new JCheckBox();
-        checkElectricite1 = new JCheckBox();
-        checkAirComprime1 = new JCheckBox();
-        checkTemperature1 = new JCheckBox();
+        checkEau1 = new JCheckBox("Eau");
+        checkElectricite1 = new JCheckBox("Electricite");
+        checkAirComprime1 = new JCheckBox("Air comprime");
+        checkTemperature1 = new JCheckBox("Temperature");
 
         panelFiltres1.setBorder(BorderFactory.createTitledBorder("Filtres"));
         listeBatiments.setBorder(BorderFactory.createTitledBorder("Bâtiments"));
@@ -133,11 +165,6 @@ public class Interface {
                 }
         ));
 
-        checkEau1.setText("Eau");
-        checkElectricite1.setText("Electricite");
-        checkAirComprime1.setText("Air comprime");
-        checkTemperature1.setText("Temperature");
-
         scrollPanelListeCapteurs1.setViewportView(listeCapteurs1);
         scrollPanelBatiments.setViewportView(listeBatiments);
 
@@ -145,10 +172,10 @@ public class Interface {
         panelFluides1.add(checkElectricite1);
         panelFluides1.add(checkAirComprime1);
         panelFluides1.add(checkTemperature1);
-        panelFiltres1.add(panelFluides1, java.awt.BorderLayout.PAGE_START);
-        panelFiltres1.add(scrollPanelBatiments, java.awt.BorderLayout.CENTER);
-        onglet1.add(panelFiltres1, java.awt.BorderLayout.LINE_END);
-        onglet1.add(scrollPanelListeCapteurs1, java.awt.BorderLayout.CENTER);
+        panelFiltres1.add(panelFluides1, BorderLayout.PAGE_START);
+        panelFiltres1.add(scrollPanelBatiments, BorderLayout.CENTER);
+        onglet1.add(panelFiltres1, BorderLayout.LINE_END);
+        onglet1.add(scrollPanelListeCapteurs1, BorderLayout.CENTER);
 
         onglets.addTab("Visualisation en temps reel", onglet1);
 
@@ -156,26 +183,26 @@ public class Interface {
 
         /* Onglet 2 - Visualisation en temps différé */
 
-        JPanel onglet2 = new JPanel(new java.awt.BorderLayout());
-        JPanel panelFiltres2 = new JPanel(new java.awt.BorderLayout());
-        JPanel panelFluides2 = new JPanel(new java.awt.GridLayout(4, 0));
-        JPanel panelDates = new JPanel(new java.awt.BorderLayout());
-        JPanel panelDates2 = new JPanel(new java.awt.FlowLayout());
-        JPanel panelCourbes = new JPanel(new java.awt.GridLayout(3, 0));
+        JPanel onglet2 = new JPanel(new BorderLayout());
+        JPanel panelFiltres2 = new JPanel(new BorderLayout());
+        JPanel panelFluides2 = new JPanel(new GridLayout(4, 0));
+        JPanel panelDates = new JPanel(new BorderLayout());
+        JPanel panelDates2 = new JPanel(new FlowLayout());
+        JPanel panelCourbes = new JPanel(new GridLayout(3, 0));
         JPanel panelCourbe1 = new JPanel();
         JPanel panelCourbe2 = new JPanel();
         JPanel panelCourbe3 = new JPanel();
         JScrollPane scrollPanelListeCapteurs2 = new JScrollPane();
-        JLabel labelDe = new JLabel();
-        JLabel labelA = new JLabel();
+        JLabel labelDe = new JLabel("de : ");
+        JLabel labelA = new JLabel(" a : ");
         listeCapteurs2 = new JList<>();
-        checkEau2 = new JCheckBox();
-        checkElectricite2 = new JCheckBox();
-        checkAirComprime2 = new JCheckBox();
-        checkTemperature2 = new JCheckBox();
-        textDateDebut = new JTextField();
-        textDateFin = new JTextField();
-        btnValiderDates = new JButton();
+        checkEau2 = new JCheckBox("Eau");
+        checkElectricite2 = new JCheckBox("Electricite");
+        checkAirComprime2 = new JCheckBox("Air comprime");
+        checkTemperature2 = new JCheckBox("Temperature");
+        textDateDebut = new JTextField("01/01/2020");
+        textDateFin = new JTextField("01/01/2022");
+        btnValiderDates = new JButton("Valider");
 
         panelFiltres2.setBorder(BorderFactory.createTitledBorder("Filtres"));
         listeCapteurs2.setBorder(BorderFactory.createTitledBorder("Capteurs"));
@@ -194,21 +221,11 @@ public class Interface {
             }
         });
 
-        panelFiltres2.add(scrollPanelListeCapteurs2, java.awt.BorderLayout.CENTER);
+        panelFiltres2.add(scrollPanelListeCapteurs2, BorderLayout.CENTER);
 
-        panelCourbe1.setBackground(new java.awt.Color(204, 255, 204));
-        panelCourbe2.setBackground(new java.awt.Color(255, 255, 204));
-        panelCourbe3.setBackground(new java.awt.Color(255, 204, 255));
-
-        checkEau2.setText("Eau");
-        checkElectricite2.setText("Electricite");
-        checkAirComprime2.setText("Air comprime");
-        checkTemperature2.setText("Temperature");
-        labelDe.setText("de : ");
-        textDateDebut.setText("01/01/2000");
-        labelA.setText(" à : ");
-        textDateFin.setText("01/01/2022");
-        btnValiderDates.setText("Valider");
+        panelCourbe1.setBackground(new Color(204, 255, 204));
+        panelCourbe2.setBackground(new Color(255, 255, 204));
+        panelCourbe3.setBackground(new Color(255, 204, 255));
 
         scrollPanelListeCapteurs2.setViewportView(listeCapteurs2);
 
@@ -222,13 +239,13 @@ public class Interface {
         panelDates2.add(textDateFin);
         panelDates.add(panelDates2, BorderLayout.CENTER);
         panelDates.add(btnValiderDates, BorderLayout.PAGE_END);
-        panelFiltres2.add(panelFluides2, java.awt.BorderLayout.PAGE_START);
-        panelFiltres2.add(panelDates, java.awt.BorderLayout.PAGE_END);
+        panelFiltres2.add(panelFluides2, BorderLayout.PAGE_START);
+        panelFiltres2.add(panelDates, BorderLayout.PAGE_END);
         panelCourbes.add(panelCourbe1);
         panelCourbes.add(panelCourbe2);
         panelCourbes.add(panelCourbe3);
-        onglet2.add(panelFiltres2, java.awt.BorderLayout.LINE_END);
-        onglet2.add(panelCourbes, java.awt.BorderLayout.CENTER);
+        onglet2.add(panelFiltres2, BorderLayout.LINE_END);
+        onglet2.add(panelCourbes, BorderLayout.CENTER);
 
         onglets.addTab("Visualisation en temps differe", onglet2);
 
@@ -236,22 +253,22 @@ public class Interface {
 
         /* Onglet 3 - Gestion des capteurs */
 
-        JPanel onglet3 = new JPanel(new java.awt.BorderLayout());
-        JPanel panelTableaux = new JPanel(new java.awt.BorderLayout());
-        JPanel panelInfosCapteur = new JPanel(new java.awt.BorderLayout());
-        JPanel panelSeuilsDefaut = new JPanel(new java.awt.BorderLayout());
+        JPanel onglet3 = new JPanel(new BorderLayout());
+        JPanel panelTableaux = new JPanel(new BorderLayout());
+        JPanel panelInfosCapteur = new JPanel(new BorderLayout());
+        JPanel panelSeuilsDefaut = new JPanel(new BorderLayout());
         JScrollPane scrollPanelInfosCapteur = new JScrollPane();
         JScrollPane scrollPanelSeuilsDefaut = new JScrollPane();
         JScrollPane scrollPanelTree = new JScrollPane();
 
         tableauInfosCapteur = new JTable();
         tableauSeuilsDefaut = new JTable();
-        btnModifierSeuils = new JButton();
+        btnModifierSeuils = new JButton("Modifier les seuils");
         treeCapteurs = new JTree();
 
         panelSeuilsDefaut.setBorder(BorderFactory.createTitledBorder("Seuils par defaut"));
         panelInfosCapteur.setBorder(BorderFactory.createTitledBorder("Informations du capteur"));
-        panelTableaux.setPreferredSize(new java.awt.Dimension(300, 300));
+        panelTableaux.setPreferredSize(new Dimension(300, 300));
         panelSeuilsDefaut.setPreferredSize(new Dimension(300, 120));
 
         tableauInfosCapteur.setModel(new javax.swing.table.DefaultTableModel(
@@ -296,19 +313,17 @@ public class Interface {
 
         tableauSeuilsDefaut.getColumnModel().getColumn(0).setPreferredWidth(150);
 
-        btnModifierSeuils.setText("Modifier les seuils");
-
         scrollPanelInfosCapteur.setViewportView(tableauInfosCapteur);
         scrollPanelSeuilsDefaut.setViewportView(tableauSeuilsDefaut);
         scrollPanelTree.setViewportView(treeCapteurs);
 
-        panelInfosCapteur.add(scrollPanelInfosCapteur, java.awt.BorderLayout.CENTER);
-        panelInfosCapteur.add(btnModifierSeuils, java.awt.BorderLayout.PAGE_END);
-        panelSeuilsDefaut.add(scrollPanelSeuilsDefaut, java.awt.BorderLayout.CENTER);
+        panelInfosCapteur.add(scrollPanelInfosCapteur, BorderLayout.CENTER);
+        panelInfosCapteur.add(btnModifierSeuils, BorderLayout.PAGE_END);
+        panelSeuilsDefaut.add(scrollPanelSeuilsDefaut, BorderLayout.CENTER);
         panelTableaux.add(panelInfosCapteur, BorderLayout.CENTER);
         panelTableaux.add(panelSeuilsDefaut, BorderLayout.SOUTH);
         onglet3.add(panelTableaux, BorderLayout.EAST);
-        onglet3.add(scrollPanelTree, java.awt.BorderLayout.CENTER);
+        onglet3.add(scrollPanelTree, BorderLayout.CENTER);
 
         onglets.addTab("Gestion des capteurs", onglet3);
 
