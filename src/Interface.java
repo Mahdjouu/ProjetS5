@@ -44,8 +44,6 @@ public class Interface {
 
     private void initialisation(JFrame frame) {
 
-
-
         /* Fenêtre principale - Gestion des capteurs */
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
