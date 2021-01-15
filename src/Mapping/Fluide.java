@@ -10,7 +10,7 @@ public class Fluide {
     private float seuilDefautMax;
     private TYPEFLUIDE type_fluide;
 
-    public Fluide(String unite, float seuilDefautMin, float seuilDefautMax, TYPEFLUIDE type_fluide) {
+    public Fluide ( String unite, float seuilDefautMin, float seuilDefautMax, TYPEFLUIDE type_fluide ) {
         this.unite = unite;
         this.seuilDefautMin = seuilDefautMin;
         this.seuilDefautMax = seuilDefautMax;
@@ -24,7 +24,7 @@ public class Fluide {
     */
 
 
-    public static Fluide create(ResultSet resultSet) {
+    public static Fluide create ( ResultSet resultSet ) {
         try {
 
             String unite = resultSet.getString("unite");
@@ -49,35 +49,35 @@ public class Fluide {
     ____________________________
     */
 
-    public String getUnite() {
+    public String getUnite () {
         return unite;
     }
 
-    public void setUnite(String unite) {
+    public void setUnite ( String unite ) {
         this.unite = unite;
     }
 
-    public float getSeuilDefautMin() {
+    public float getSeuilDefautMin () {
         return seuilDefautMin;
     }
 
-    public void setSeuilDefautMin(int seuilDefautMin) {
+    public void setSeuilDefautMin ( int seuilDefautMin ) {
         this.seuilDefautMin = seuilDefautMin;
     }
 
-    public float getSeuilDefautMax() {
+    public float getSeuilDefautMax () {
         return seuilDefautMax;
     }
 
-    public void setSeuilDefautMax(int seuilDefautMax) {
+    public void setSeuilDefautMax ( int seuilDefautMax ) {
         this.seuilDefautMax = seuilDefautMax;
     }
 
-    public TYPEFLUIDE getType_fluide() {
+    public TYPEFLUIDE getType_fluide () {
         return type_fluide;
     }
 
-    public void setType_fluide(TYPEFLUIDE type_fluide) {
+    public void setType_fluide ( TYPEFLUIDE type_fluide ) {
         this.type_fluide = type_fluide;
     }
 }

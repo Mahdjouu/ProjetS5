@@ -13,7 +13,7 @@ public class Capteur {
     private Lieu lieu;
     private Fluide fluide;
 
-    public Capteur(int id, float valeur, float seuilMin, float seuilMax, boolean connecte, Lieu lieu, Fluide fluide) {
+    public Capteur ( int id, float valeur, float seuilMin, float seuilMax, boolean connecte, Lieu lieu, Fluide fluide ) {
         this.id = id;
         this.valeur = valeur;
         this.seuilMin = seuilMin;
@@ -30,7 +30,7 @@ public class Capteur {
     */
 
 
-    public static Capteur create(ResultSet resultSet) {
+    public static Capteur create ( ResultSet resultSet ) {
         try {
 
             int id = resultSet.getInt("id");
@@ -74,59 +74,59 @@ public class Capteur {
     ____________________________
     */
 
-    public int getId() {
+    public int getId () {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId ( int id ) {
         this.id = id;
     }
 
-    public float getValeur() {
+    public float getValeur () {
         return valeur;
     }
 
-    public void setValeur(float valeur) {
+    public void setValeur ( float valeur ) {
         this.valeur = valeur;
     }
 
-    public float getSeuilMin() {
+    public float getSeuilMin () {
         return seuilMin;
     }
 
-    public void setSeuilMin(float seuilMin) {
+    public void setSeuilMin ( float seuilMin ) {
         this.seuilMin = seuilMin;
     }
 
-    public float getSeuilMax() {
+    public float getSeuilMax () {
         return seuilMax;
     }
 
-    public void setSeuilMax(float seuilMax) {
+    public void setSeuilMax ( float seuilMax ) {
         this.seuilMax = seuilMax;
     }
 
-    public boolean isConnecte() {
+    public boolean isConnecte () {
         return connecte;
     }
 
-    public void setConnecte(boolean connecte) {
+    public void setConnecte ( boolean connecte ) {
         this.connecte = connecte;
     }
 
-    public Lieu getLieu() {
+    public Lieu getLieu () {
         return lieu;
     }
 
-    public void setLieu(Lieu lieu) {
+    public void setLieu ( Lieu lieu ) {
         this.lieu = lieu;
     }
 
-    public Fluide getFluide() {
+    public Fluide getFluide () {
         return fluide;
     }
 
-    public void setFluide(Fluide fluide) {
+    public void setFluide ( Fluide fluide ) {
         this.fluide = fluide;
     }
 }

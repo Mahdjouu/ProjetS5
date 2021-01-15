@@ -10,7 +10,7 @@ public class Lieu {
     private String batiment;
     private int etage;
 
-    public Lieu(int id, String nom, String batiment, int etage) {
+    public Lieu ( int id, String nom, String batiment, int etage ) {
         this.id = id;
         this.nom = nom;
         this.batiment = batiment;
@@ -25,7 +25,7 @@ public class Lieu {
     */
 
 
-    public static Lieu create(ResultSet resultSet) {
+    public static Lieu create ( ResultSet resultSet ) {
         try {
             int id = resultSet.getInt("id");
             String nom = resultSet.getString("nom");
@@ -49,35 +49,35 @@ public class Lieu {
     ____________________________
     */
 
-    public int getId() {
+    public int getId () {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId ( int id ) {
         this.id = id;
     }
 
-    public String getNom() {
+    public String getNom () {
         return nom;
     }
 
-    public void setNom(String nom) {
+    public void setNom ( String nom ) {
         this.nom = nom;
     }
 
-    public String getBatiment() {
+    public String getBatiment () {
         return batiment;
     }
 
-    public void setBatiment(String batiment) {
+    public void setBatiment ( String batiment ) {
         this.batiment = batiment;
     }
 
-    public int getEtage() {
+    public int getEtage () {
         return etage;
     }
 
-    public void setEtage(int etage) {
+    public void setEtage ( int etage ) {
         this.etage = etage;
     }
 }
