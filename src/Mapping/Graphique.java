@@ -9,25 +9,27 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 
+import java.awt.*;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import Connexion;
 
 public class Graphique {
     private final int idC;
-    private final Connection connection;
+    private final Connexion connection;
     private final DateFormat dateDebut;
     private final DateFormat dateFin;
 
-    public Graphique ( int idC, Connection connection, DateFormat debut, DateFormat fin ) {
+    public Graphique ( int idC, Connexion connection, DateFormat debut, DateFormat fin ) {
         this.idC = idC;
         this.connection = connection;
         this.dateDebut = debut;
         this.dateFin = fin;
     }
 
-    public JFreeChart create ( int idC ) throws SQLException {
+    public Component create () throws SQLException {
 
         String chartTitle = " Capteur " + idC;
         String xAxisLabel = "Date/Time";
@@ -59,11 +61,11 @@ public class Graphique {
         try {
             //This query helps to fetch the data from the database.
 
-            Statement statement = this.connection.createStatement();
+            Statement statement = connection.createStatement();
 
             ResultSet y = statement.executeQuery("SELECT `valeur` FROM `donnee`");
             ResultSet x = statement.executeQuery("SELECT `dateTime` FROM `donnee`");
-            ResultSet table = statement.executeQuery("SELECT `*` FROM `donnee` WHERE idC=" + this.idC+ "and dateTime BETWEEN" + this.dateDebut + "and" + this.dateFin);
+            ResultSet table = statement.executeQuery("SELECT `*` FROM `donnee` WHERE idC=" + idC+ "and dateTime BETWEEN" + dateDebut + "and" +dateFin);
 
             while (table.next()) {
                 Timestamp time = table.getTimestamp("dateTime");
@@ -77,7 +79,7 @@ public class Graphique {
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(series11);
 
-        this.connection.close();
+        connection.close();
         return dataset;
     }
 

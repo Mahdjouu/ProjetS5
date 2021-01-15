@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import Mapping.Graphique;
 
 public class Interface {
 
@@ -46,7 +50,7 @@ public class Interface {
         SwingUtilities.invokeLater(() -> new Interface());
     }
 
-    private void initialisation ( JFrame frame ) {
+    private void initialisation ( JFrame frame ) throws SQLException {
 
         /* Fenêtre principale - Gestion des capteurs */
 
@@ -249,6 +253,10 @@ public class Interface {
         onglet2.add(panelFiltres2, BorderLayout.LINE_END);
         onglet2.add(panelCourbes, BorderLayout.CENTER);
 
+        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        Connexion connect = new Connexion("http://localhost/phpmyadmin/db_structure.php?db=capteur", "root", "");
+        Graphique graph1 = new Graphique(1, connect, 2021-01-01, 2021-01-18 );
+        panelCourbe1.add(graph1.create());
         onglets.addTab("Visualisation en temps differe", onglet2);
 
 
