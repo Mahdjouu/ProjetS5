@@ -63,7 +63,7 @@ public class Graphique {
 
             ResultSet y = statement.executeQuery("SELECT `valeur` FROM `donnee`");
             ResultSet x = statement.executeQuery("SELECT `dateTime` FROM `donnee`");
-            ResultSet table = statement.executeQuery("SELECT `*` FROM `donnee` WHERE dateTime BETWEEN" + dateDebut + "and" + dateFin);
+            ResultSet table = statement.executeQuery("SELECT `*` FROM `donnee` WHERE idC=" + this.idC+ "and dateTime BETWEEN" + this.dateDebut + "and" + this.dateFin);
 
             while (table.next()) {
                 Timestamp time = table.getTimestamp("dateTime");
