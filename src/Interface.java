@@ -1,8 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java.sql.Connection;
 import java.sql.SQLException;
 
+import Connexion.Connexion;
 import Mapping.Graphique;
 
 public class Interface {
@@ -69,7 +69,7 @@ public class Interface {
 
         dialogPort = new JDialog();
         JPanel panelPort = new JPanel(new GridLayout(5, 1));
-        JLabel labelConnexion = new JLabel("Connexion à l'interface de visualisation NeoCampus");
+        JLabel labelConnexion = new JLabel("Connexion.Connexion à l'interface de visualisation NeoCampus");
         JLabel labelPort = new JLabel("Veuillez renseigner le port sur lequel vous souhaitez vous connecter :");
         textPort = new JTextField("8080");
         btnAnnulerPort = new JButton("Annuler");

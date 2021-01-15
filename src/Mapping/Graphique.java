@@ -9,12 +9,11 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 
-import java.awt.*;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import Connexion;
+import Connexion.Connexion;
 
 public class Graphique {
     private final int idC;
@@ -29,7 +28,7 @@ public class Graphique {
         this.dateFin = fin;
     }
 
-    public Component create () throws SQLException {
+    public JFreeChart create () throws SQLException {
 
         String chartTitle = " Capteur " + idC;
         String xAxisLabel = "Date/Time";
@@ -79,7 +78,6 @@ public class Graphique {
         TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(series11);
 
-        connection.close();
         return dataset;
     }
 
