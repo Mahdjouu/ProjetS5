@@ -2,14 +2,14 @@ import java.sql.*;
 
 public class Connexion {
 
-    private boolean connected;
     private final String address;
     private final String username;
     private final String password;
+    private boolean connected;
     private Connection connection;
     private Statement statement;
 
-    public Connexion(String address, String username, String password) {
+    public Connexion ( String address, String username, String password ) {
         this.connected = false;
         this.address = address;
         this.username = username;
@@ -23,7 +23,7 @@ public class Connexion {
     ____________________________
     */
 
-    public boolean connect() {
+    public boolean connect () {
 
         System.out.println("-------- Oracle JDBC Connection Testing ------");
 
@@ -71,7 +71,7 @@ public class Connexion {
         }
     }
 
-    public ResultSet executeQuery(String query) {
+    public ResultSet executeQuery ( String query ) {
 
         try {
             return statement.executeQuery(query);
@@ -82,7 +82,7 @@ public class Connexion {
         }
     }
 
-    public int executeUpdate(String query) {
+    public int executeUpdate ( String query ) {
 
         try {
             return statement.executeUpdate(query);
@@ -99,23 +99,23 @@ public class Connexion {
     ____________________________
     */
 
-    public boolean isConnected() {
+    public boolean isConnected () {
         return connected;
     }
 
-    public void setConnected(boolean connected) {
+    public void setConnected ( boolean connected ) {
         this.connected = connected;
     }
 
-    public String getAddress() {
+    public String getAddress () {
         return address;
     }
 
-    public String getUsername() {
+    public String getUsername () {
         return username;
     }
 
-    public String getPassword() {
+    public String getPassword () {
         return password;
     }
 
@@ -124,7 +124,6 @@ public class Connexion {
         REQUESTS SQL
     ____________________________
     */
-
 
 
 }

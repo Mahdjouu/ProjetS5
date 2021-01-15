@@ -37,12 +37,16 @@ public class Interface {
 
     private JTree treeCapteurs;
 
-    public Interface() {
+    public Interface () {
         JFrame frame = new JFrame("Gestion des capteurs");
         initialisation(frame);
     }
 
-    private void initialisation(JFrame frame) {
+    public static void main ( String[] args ) {
+        SwingUtilities.invokeLater(() -> new Interface());
+    }
+
+    private void initialisation ( JFrame frame ) {
 
         /* Fenêtre principale - Gestion des capteurs */
 
@@ -137,13 +141,13 @@ public class Interface {
         // REQUETE POUR GET TOUS LES BATIMENTS //
 
         listeBatiments.setModel(new AbstractListModel<String>() {
-            String[] strings = {"Item 1", "Item 26566465468184384384", "Item 3", "Item 4", "Item 5"};
+            final String[] strings = {"Item 1", "Item 26566465468184384384", "Item 3", "Item 4", "Item 5"};
 
-            public int getSize() {
+            public int getSize () {
                 return strings.length;
             }
 
-            public String getElementAt(int i) {
+            public String getElementAt ( int i ) {
                 return strings[i];
             }
         });
@@ -208,13 +212,13 @@ public class Interface {
         // REQUETE POUR GET TOUS LES NOMS DE CAPTEURS
 
         listeCapteurs2.setModel(new AbstractListModel<>() {
-            String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
+            final String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
 
-            public int getSize() {
+            public int getSize () {
                 return strings.length;
             }
 
-            public String getElementAt(int i) {
+            public String getElementAt ( int i ) {
                 return strings[i];
             }
         });
@@ -279,9 +283,9 @@ public class Interface {
                 },
                 new String[]{"Informations", "Valeurs"}
         ) {
-            boolean[] canEdit = new boolean[]{false, false};
+            final boolean[] canEdit = new boolean[]{false, false};
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
+            public boolean isCellEditable ( int rowIndex, int columnIndex ) {
                 return canEdit[columnIndex];
             }
         });
@@ -295,16 +299,16 @@ public class Interface {
                 },
                 new String[]{"Fluide", "Seuil min", "Seuil max", "Unite"}
         ) {
-            Class[] types = new Class[]{
+            final Class[] types = new Class[]{
                     java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean[]{false, false, false, false};
+            final boolean[] canEdit = new boolean[]{false, false, false, false};
 
-            public Class getColumnClass(int columnIndex) {
+            public Class getColumnClass ( int columnIndex ) {
                 return types[columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
+            public boolean isCellEditable ( int rowIndex, int columnIndex ) {
                 return canEdit[columnIndex];
             }
         });
@@ -330,9 +334,5 @@ public class Interface {
 
         frame.pack();
         frame.setVisible(true);
-    }
-
-    public static void main(String args[]) {
-        SwingUtilities.invokeLater(() -> new Interface());
     }
 }
