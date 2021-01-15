@@ -3,6 +3,8 @@ import java.awt.*;
 
 public class Interface {
 
+    private JFrame frame;
+
     private JDialog dialogPort;
     private JDialog dialogSeuils;
 
@@ -38,11 +40,11 @@ public class Interface {
     private JTree treeCapteurs;
 
     public Interface() {
-        JFrame frame = new JFrame("Gestion des capteurs");
-        initialisation(frame);
+        frame = new JFrame("Gestion des capteurs");
+        initialisation();
     }
 
-    private void initialisation(JFrame frame) {
+    private void initialisation() {
 
 
 
@@ -77,6 +79,9 @@ public class Interface {
         labelConnexion.setHorizontalAlignment(SwingConstants.CENTER);
         labelPort.setHorizontalAlignment(SwingConstants.CENTER);
         textPort.setHorizontalAlignment(JTextField.CENTER);
+
+        btnAnnulerPort.addActionListener(e -> System.exit(0));
+        btnValiderPort.addActionListener(e -> etablirConnexion());
 
         panelPort.add(labelConnexion);
         panelPort.add(labelPort);
@@ -138,7 +143,7 @@ public class Interface {
 
         // REQUETE POUR GET TOUS LES BATIMENTS //
 
-        listeBatiments.setModel(new AbstractListModel<String>() {
+        listeBatiments.setModel(new AbstractListModel<>() {
             String[] strings = {"Item 1", "Item 26566465468184384384", "Item 3", "Item 4", "Item 5"};
 
             public int getSize() {
@@ -331,6 +336,11 @@ public class Interface {
         frame.setLocationRelativeTo(null);
 
         frame.pack();
+        dialogPort.setVisible(true);
+    }
+
+    private void etablirConnexion() {
+        dialogPort.setVisible(false);
         frame.setVisible(true);
     }
 
